@@ -1,39 +1,33 @@
-using Microsoft.Maui.Controls;
+п»їusing Microsoft.Maui.Controls;
 
-namespace App
+namespace FastReading
 {
     public partial class LoginPage : ContentPage
     {
         public LoginPage()
         {
             InitializeComponent();
-
-            // Переход на экран регистрации при нажатии на текст
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += OnRegisterTapped;
-            TapGestureRecognizer = tapGestureRecognizer;
         }
 
-        // Метод для кнопки входа
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             string username = UsernameEntry.Text;
             string password = PasswordEntry.Text;
 
-            // Проверка валидности (пример)
+            // РџСЂРѕРІРµСЂРєР° РІР°Р»РёРґРЅРѕСЃС‚Рё (РїСЂРёРјРµСЂ)
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                await DisplayAlert("Ошибка", "Пожалуйста, заполните все поля", "OK");
+                await DisplayAlert("РћС€РёР±РєР°", "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, Р·Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ", "OK");
                 return;
             }
 
-            // Здесь должна быть логика для аутентификации пользователя
+            // Р—РґРµСЃСЊ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ Р»РѕРіРёРєР° РґР»СЏ Р°СѓС‚РµРЅС‚РёС„РёРєР°С†РёРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
-            // Переход в основной экран после успешного входа
+            // РџРµСЂРµС…РѕРґ РІ РѕСЃРЅРѕРІРЅРѕР№ СЌРєСЂР°РЅ РїРѕСЃР»Рµ СѓСЃРїРµС€РЅРѕРіРѕ РІС…РѕРґР°
             await Navigation.PushAsync(new MainPage());
         }
 
-        // Переход на экран регистрации
+        // РџРµСЂРµС…РѕРґ РЅР° СЌРєСЂР°РЅ СЂРµРіРёСЃС‚СЂР°С†РёРё
         private async void OnRegisterTapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RegisterPage());

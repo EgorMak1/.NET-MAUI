@@ -1,47 +1,42 @@
-using Microsoft.Maui.Controls;
+п»їusing Microsoft.Maui.Controls;
 
-namespace App
+namespace FastReading
 {
     public partial class RegisterPage : ContentPage
     {
         public RegisterPage()
         {
             InitializeComponent();
-
-            // Переход на экран входа при нажатии на текст
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += OnLoginTapped;
-            TapGestureRecognizer = tapGestureRecognizer;
         }
 
-        // Метод для кнопки регистрации
+        // РњРµС‚РѕРґ РґР»СЏ РєРЅРѕРїРєРё СЂРµРіРёСЃС‚СЂР°С†РёРё
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
             string username = UsernameEntry.Text;
             string password = PasswordEntry.Text;
             string confirmPassword = ConfirmPasswordEntry.Text;
 
-            // Проверка валидности
+            // РџСЂРѕРІРµСЂРєР° РІР°Р»РёРґРЅРѕСЃС‚Рё
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
             {
-                await DisplayAlert("Ошибка", "Пожалуйста, заполните все поля", "OK");
+                await DisplayAlert("РћС€РёР±РєР°", "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, Р·Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ", "OK");
                 return;
             }
 
             if (password != confirmPassword)
             {
-                await DisplayAlert("Ошибка", "Пароли не совпадают", "OK");
+                await DisplayAlert("РћС€РёР±РєР°", "РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚", "OK");
                 return;
             }
 
-            // Здесь должна быть логика для регистрации пользователя
+            // Р—РґРµСЃСЊ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ Р»РѕРіРёРєР° РґР»СЏ СЂРµРіРёСЃС‚СЂР°С†РёРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
-            // Переход на экран входа после успешной регистрации
-            await DisplayAlert("Успех", "Регистрация прошла успешно", "OK");
+            // РџРµСЂРµС…РѕРґ РЅР° СЌРєСЂР°РЅ РІС…РѕРґР° РїРѕСЃР»Рµ СѓСЃРїРµС€РЅРѕР№ СЂРµРіРёСЃС‚СЂР°С†РёРё
+            await DisplayAlert("РЈСЃРїРµС…", "Р РµРіРёСЃС‚СЂР°С†РёСЏ РїСЂРѕС€Р»Р° СѓСЃРїРµС€РЅРѕ", "OK");
             await Navigation.PopAsync();
         }
 
-        // Переход на экран входа
+        // РџРµСЂРµС…РѕРґ РЅР° СЌРєСЂР°РЅ РІС…РѕРґР°
         private async void OnLoginTapped(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

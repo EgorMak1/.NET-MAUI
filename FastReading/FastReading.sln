@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReading", "FastReading\FastReading.csproj", "{ECD16DD4-0E2F-4E74-BA89-6855F254C755}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECD16DD4-0E2F-4E74-BA89-6855F254C755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD16DD4-0E2F-4E74-BA89-6855F254C755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD16DD4-0E2F-4E74-BA89-6855F254C755}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{ECD16DD4-0E2F-4E74-BA89-6855F254C755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD16DD4-0E2F-4E74-BA89-6855F254C755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD16DD4-0E2F-4E74-BA89-6855F254C755}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12DF483F-5BE2-4E0E-B5FB-9243F9F59953}
+	EndGlobalSection
+EndGlobal
