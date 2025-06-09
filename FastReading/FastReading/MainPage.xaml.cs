@@ -13,7 +13,7 @@ namespace FastReading
         private async void OnStartTrainingClicked(object sender, EventArgs e)
         {
             // Логика для начала тренировки
-            await DisplayAlert("Начать тренировку", "Вы начали тренировку!", "OK");
+            await Navigation.PushAsync(new ExerciseSelectionPage());
 
             // Можно добавить переход на экран тренировки, если он будет:
             // await Navigation.PushAsync(new TrainingPage());

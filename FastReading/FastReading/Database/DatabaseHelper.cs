@@ -14,7 +14,10 @@ namespace FastReading.Database
             // Создаем или открываем базу данных SQLite
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<User>().Wait(); // Создание таблицы User (если еще нет)
+            _database.CreateTableAsync<TrainingStatistics>().Wait(); // Add this line
         }
+
+
 
         // Метод для добавления пользователя
         public async Task<int> AddUserAsync(User user)
@@ -40,6 +43,11 @@ namespace FastReading.Database
         public async Task<int> AddExerciseStatAsync(ExerciseStats stat)
         {
             return await _database.InsertAsync(stat);
+        }
+
+        public async Task<int> AddTrainingStatisticsAsync(TrainingStatistics stats)
+        {
+            return await _database.InsertAsync(stats);
         }
 
         // Получение статистики

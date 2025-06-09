@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="FastReading.ShulteTablePage">
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="20">
+            <!-- Заголовок -->
+            <Label Text="Таблица Шульте"
+                   FontSize="32"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <!-- Таймер -->
+            <Label x:Name="TimerLabel"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <!-- Таблица Шульте -->
+            <Grid x:Name="ShulteTableGrid" />
+
+            <!-- Кнопка для завершения тренировки -->
+            <Button Text="Завершить тренировку"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Clicked="OnFinishTrainingClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

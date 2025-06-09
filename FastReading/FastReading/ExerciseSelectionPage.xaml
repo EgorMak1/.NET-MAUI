@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="FastReading.ExerciseSelectionPage"
+             xmlns:local="clr-namespace:FastReading">
+
+    <StackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+
+        <!-- Заголовок -->
+        <Label Text="Выберите упражнение"
+               FontSize="32"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+        <!-- Кнопка для Таблицы Шульце -->
+        <Button Text="Таблица Шульце"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                Clicked="OnShulteTableClicked" />
+    </StackLayout>
+</ContentPage>
