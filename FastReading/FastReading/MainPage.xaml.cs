@@ -29,6 +29,13 @@ namespace FastReading
             // await Navigation.PushAsync(new StatisticsPage());
         }
 
+        // Обработчик для кнопки "Авторизация"
+        private async void OnLoginButtonClicked(object sender, EventArgs e)
+        {
+            // Логика для перехода на страницу авторизации (LoginPage)
+            await Navigation.PushAsync(new LoginPage());
+        }
+
         // Обработчик для кнопки "Выйти"
         private void OnExitClicked(object sender, EventArgs e)
         {

@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="FastReading.MainPage">
 
+    <!-- Основной контейнер для всех элементов -->
     <StackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+
         <!-- Заголовок страницы -->
         <Label Text="Главная страница"
                FontSize="32"
@@ -27,5 +29,14 @@
                 BackgroundColor="Red"
                 TextColor="White"
                 Clicked="OnExitClicked"/>
+
+        <!-- Кнопка "Авторизация" в верхнем правом углу -->
+        <Button Text="Авторизация"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                BackgroundColor="Blue"
+                TextColor="White"
+                Clicked="OnLoginButtonClicked"
+                Margin="10"/>
     </StackLayout>
 </ContentPage>
