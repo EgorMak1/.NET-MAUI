@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="YourApp.LoginPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+	<StackLayout Padding="20" Spacing="20">
+		<!-- Заголовок экрана -->
+		<Label Text="Вход"
+               FontSize="32"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+		<!-- Поле ввода для имени пользователя -->
+		<Entry x:Name="UsernameEntry"
+               Placeholder="Имя пользователя"
+               Keyboard="Email"
+               TextColor="Black"
+               Margin="0,10,0,0"/>
+
+		<!-- Поле ввода для пароля -->
+		<Entry x:Name="PasswordEntry"
+               Placeholder="Пароль"
+               IsPassword="True"
+               TextColor="Black"
+               Margin="0,10,0,0"/>
+
+		<!-- Кнопка для входа -->
+		<Button Text="Войти"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                Clicked="OnLoginClicked"/>
+
+		<!-- Переход на экран регистрации -->
+		<Label Text="Нет аккаунта? Зарегистрируйтесь"
+               TextColor="Blue"
+               HorizontalOptions="Center"
+               GestureRecognizers="{Binding TapGestureRecognizer}"/>
+
+	</StackLayout>
+</ContentPage>
