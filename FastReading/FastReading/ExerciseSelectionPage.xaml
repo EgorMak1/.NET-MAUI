@@ -12,8 +12,8 @@
                HorizontalOptions="Center"
                VerticalOptions="Center" />
 
-        <!-- Кнопка для Таблицы Шульце -->
-        <Button Text="Таблица Шульце"
+        <!-- Кнопка для Таблицы Шульте -->
+        <Button Text="Таблица Шульте"
                 BackgroundColor="DodgerBlue"
                 TextColor="White"
                 Clicked="OnShulteTableClicked" />
