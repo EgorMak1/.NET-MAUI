@@ -9,5 +9,7 @@ namespace FastReading
         public DateTime Date { get; set; }
         public double TimeSpent { get; set; } // Время выполнения упражнения
         public int Errors { get; set; } // Количество ошибок
+
+        public int UserId { get; set; } // Идентификатор пользователя, к которому относится статистика
     }
 }

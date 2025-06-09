@@ -2,11 +2,12 @@
 using Microsoft.Maui.Controls;
 using System.Threading.Tasks;
 
+
 namespace FastReading
 {
     public partial class RegisterPage : ContentPage
     {
-        private readonly Database.DatabaseHelper _databaseHelper;
+        private readonly DatabaseHelper _databaseHelper;
 
         
         public RegisterPage()

@@ -1,8 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Maui.Storage;
 
 namespace FastReading
 {
@@ -22,6 +21,26 @@ namespace FastReading
         // Метод для генерации таблицы
         private void InitializeTable()
         {
+            // Проверка на наличие UserId в Preferences
+            if (!Preferences.Default.ContainsKey("UserId"))
+            {
+                // Если UserId нет в Preferences, перенаправляем на страницу логина
+                DisplayAlert("Ошибка", "Пожалуйста, авторизуйтесь", "OK");
+                Navigation.InsertPageBefore(new LoginPage(), this);
+                Navigation.PopAsync();
+                return;
+            }
+
+            int userId = Preferences.Get("UserId", -1);  // Получаем UserId из Preferences (если не найден, -1)
+            if (userId == -1)
+            {
+                // Если UserId не найден, показываем сообщение и перенаправляем на страницу логина
+                DisplayAlert("Ошибка", "Пожалуйста, авторизуйтесь", "OK");
+                Navigation.InsertPageBefore(new LoginPage(), this);
+                Navigation.PopAsync();
+                return;
+            }
+
             int gridSize = 5; // Размер таблицы (5x5)
             ShulteTableGrid.RowDefinitions.Clear();
             ShulteTableGrid.ColumnDefinitions.Clear();
@@ -100,13 +119,17 @@ namespace FastReading
             var timeSpent = DateTime.Now - _startTime;
             await DisplayAlert("Тренировка завершена", $"Время: {timeSpent:hh\\:mm\\:ss}\nОшибки: {_errors}", "OK");
 
+            // Получаем UserId из Preferences
+            int userId = Preferences.Get("UserId", -1);
+
             // Сохраняем статистику в базе данных
             var dbHelper = ((App)Application.Current).Database;
             var stats = new TrainingStatistics
             {
                 Date = DateTime.Now,
                 TimeSpent = timeSpent.TotalSeconds,
-                Errors = _errors
+                Errors = _errors,
+                UserId = userId // Привязываем результат к авторизованному пользователю
             };
             await dbHelper.AddTrainingStatisticsAsync(stats);
 

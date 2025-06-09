@@ -1,6 +1,6 @@
-﻿using Microsoft.Maui.Controls;
-using System.Threading.Tasks;
-using FastReading.Database;
+﻿using Microsoft.Maui.Storage;
+using System;
+using Microsoft.Maui.Controls;
 
 namespace FastReading
 {
@@ -14,7 +14,6 @@ namespace FastReading
             _databaseHelper = ((App)Application.Current).Database; // Получаем экземпляр базы данных
         }
 
-        // Метод для проверки логина
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             string username = UsernameEntry.Text;
@@ -37,16 +36,16 @@ namespace FastReading
                 return;
             }
 
-            // Переход на главный экран после успешного входа
-            await Navigation.PushAsync(new MainPage());
+            // Сохраняем UserId в Preferences
+            Preferences.Set("UserId", user.Id);  // Сохраняем UserId в Preferences
+
+            // Переход на страницу выбора тренажёров
+            await Navigation.PushAsync(new ExerciseSelectionPage());
         }
 
-        // Переход на страницу регистрации
         private async void OnRegisterTapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RegisterPage());
         }
-        
-
     }
 }

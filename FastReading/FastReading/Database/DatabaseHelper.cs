@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using FastReading.Database;
 
-namespace FastReading.Database
+namespace FastReading
 {
     public class DatabaseHelper
     {
@@ -17,6 +18,27 @@ namespace FastReading.Database
             _database.CreateTableAsync<TrainingStatistics>().Wait(); // Add this line
         }
 
+        // Сохранение статистики тренировки
+        public async Task<int> AddTrainingStatisticsAsync(TrainingStatistics stats)
+        {
+            return await _database.InsertAsync(stats); // Вставка данных
+        }
+
+        // Получение статистики для конкретного пользователя
+        public async Task<List<TrainingStatistics>> GetTrainingStatisticsByUserAsync(int userId)
+        {
+            return await _database.Table<TrainingStatistics>()
+                .Where(x => x.UserId == userId)
+                .ToListAsync(); // Получаем все записи статистики для пользователя
+        }
+
+        // Получение пользователя по имени
+        public async Task<User> GetUserByUsernameAsync(string username)
+        {
+            return await _database.Table<User>()
+                .Where(u => u.Username == username)
+                .FirstOrDefaultAsync(); // Получение пользователя по имени
+        }
 
 
         // Метод для добавления пользователя
@@ -31,13 +53,7 @@ namespace FastReading.Database
             return await _database.Table<User>().ToListAsync();
         }
 
-        // Метод для получения пользователя по имени
-        public async Task<User> GetUserByUsernameAsync(string username)
-        {
-            return await _database.Table<User>()
-                .Where(u => u.Username == username)
-                .FirstOrDefaultAsync();
-        }
+
 
         // Метод для создания таблицы статистики
         public async Task<int> AddExerciseStatAsync(ExerciseStats stat)
@@ -45,10 +61,6 @@ namespace FastReading.Database
             return await _database.InsertAsync(stat);
         }
 
-        public async Task<int> AddTrainingStatisticsAsync(TrainingStatistics stats)
-        {
-            return await _database.InsertAsync(stats);
-        }
 
         // Получение статистики
         public async Task<List<ExerciseStats>> GetExerciseStatsAsync(string username)

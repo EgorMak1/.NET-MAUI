@@ -5,20 +5,20 @@ namespace FastReading
 {
     public partial class App : Application
     {
-        private readonly Database.DatabaseHelper _databaseHelper;
+        private readonly DatabaseHelper _databaseHelper;
 
         public App()
         {
             InitializeComponent();
 
-            // Путь к файлу базы данных
+            // Path to the database file
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "fastreading.db3");
-            _databaseHelper = new Database.DatabaseHelper(dbPath);
+            _databaseHelper = new DatabaseHelper(dbPath);
 
             MainPage = new NavigationPage(new MainPage());
         }
 
-        // Получить экземпляр базы данных
-        public Database.DatabaseHelper Database => _databaseHelper;
+        // Get the database instance
+        public DatabaseHelper Database => _databaseHelper;
     }
 }
