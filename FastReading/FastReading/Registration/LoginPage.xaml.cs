@@ -40,7 +40,7 @@ namespace FastReading
             Preferences.Set("UserId", user.Id);  // Сохраняем UserId в Preferences
 
             // Переход на страницу выбора тренажёров
-            await Navigation.PushAsync(new ExerciseSelectionPage());
+            await Navigation.PushAsync(new MainPage());
         }
 
         private async void OnRegisterTapped(object sender, EventArgs e)
