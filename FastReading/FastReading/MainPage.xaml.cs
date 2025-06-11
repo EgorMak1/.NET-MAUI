@@ -7,6 +7,8 @@ namespace FastReading
         public MainPage()
         {
             InitializeComponent();
+            DisplayUserInfo();
+            UpdateAuthButton();
         }
 
         // Обработчик для кнопки "Начать тренировку"
@@ -22,18 +24,71 @@ namespace FastReading
         // Обработчик для кнопки "Статистика"
         private async void OnViewStatisticsClicked(object sender, EventArgs e)
         {
-            // Логика для отображения статистики
-            await DisplayAlert("Статистика", "Здесь будет ваша статистика.", "OK");
+            var userId = Preferences.Get("UserId", -1);
 
-            // Также, если есть экран статистики:
-            // await Navigation.PushAsync(new StatisticsPage());
+            // Если UserId равен -1, значит пользователь не авторизован
+            if (userId == -1)
+            {
+                // Показываем предупреждающее сообщение
+                await DisplayAlert("Статистика", "Пожалуйста, авторизуйтесь для доступа к статистике.", "OK");
+            }
+            else
+            {
+                // Если пользователь авторизован, переходим на страницу статистики
+                await Navigation.PushAsync(new StatisticsPage());
+            }
+
+        }
+
+        private void DisplayUserInfo()
+        {
+            // Получаем UserId и Username из Preferences
+            var userId = Preferences.Get("UserId", -1);
+            var username = Preferences.Get("Username", "Не авторизован");
+
+            // Отображаем UserId и Username в метках
+            UserIdLabel.Text = userId.ToString();
+            UsernameLabel.Text = username;
         }
 
         // Обработчик для кнопки "Авторизация"
-        private async void OnLoginButtonClicked(object sender, EventArgs e)
+        private void UpdateAuthButton()
         {
-            // Логика для перехода на страницу авторизации (LoginPage)
-            await Navigation.PushAsync(new LoginPage());
+            var userId = Preferences.Get("UserId", -1);  // Если нет данных, по умолчанию будет -1
+            if (userId == -1)
+            {
+                // Если пользователь не авторизован, показываем кнопку "Войти"
+
+                AuthButton.Text = "Войти";
+
+            }
+            else
+            {
+                // Если пользователь авторизован, показываем кнопку "Выйти"
+                AuthButton.Text = "Выйти";
+            }
+        }
+        private async void OnAuthButtonClicked(object sender, EventArgs e)
+        {
+            var userId = Preferences.Get("UserId", -1);  // Получаем UserId из Preferences
+
+            if (userId == -1)
+            {
+                // Если пользователь не авторизован, переходим на страницу авторизации
+                await Navigation.PushAsync(new LoginPage());
+            }
+            else
+            {
+                // Если пользователь авторизован, выходим из системы
+                Preferences.Remove("UserId");  // Удаляем UserId
+                Preferences.Remove("Username");  // Удаляем имя пользователя
+
+                // Обновляем интерфейс
+                DisplayUserInfo();
+                UpdateAuthButton();  // Обновляем кнопку после выхода из системы
+
+                
+            }
         }
 
         // Обработчик для кнопки "Выйти"

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Storage;
 using System;
 using Microsoft.Maui.Controls;
+using FastReading.Database;
 
 namespace FastReading
 {
@@ -36,9 +37,11 @@ namespace FastReading
                 return;
             }
 
+           
+            
             // Сохраняем UserId в Preferences
             Preferences.Set("UserId", user.Id);  // Сохраняем UserId в Preferences
-
+            Preferences.Set("Username", user.Username);  // Сохраняем имя пользователя
             // Переход на страницу выбора тренажёров
             await Navigation.PushAsync(new MainPage());
         }

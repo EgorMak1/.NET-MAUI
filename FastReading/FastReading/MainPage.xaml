@@ -31,12 +31,24 @@
                 Clicked="OnExitClicked"/>
 
         <!-- Кнопка "Авторизация" в верхнем правом углу -->
-        <Button Text="Авторизация"
+        <Button x:Name="AuthButton"
+                Text="Авторизация"
                 HorizontalOptions="End"
                 VerticalOptions="Start"
                 BackgroundColor="Blue"
                 TextColor="White"
-                Clicked="OnLoginButtonClicked"
+                Clicked="OnAuthButtonClicked"
                 Margin="10"/>
+        <!-- Отображение имени пользователя и UserID -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Label Text="UserID: " FontSize="20" VerticalOptions="Center"/>
+            <Label x:Name="UserIdLabel" FontSize="20" VerticalOptions="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Label Text="Имя: " FontSize="20" VerticalOptions="Center"/>
+            <Label x:Name="UsernameLabel" FontSize="20" VerticalOptions="Center"/>
+        </StackLayout>
+        
     </StackLayout>
 </ContentPage>
