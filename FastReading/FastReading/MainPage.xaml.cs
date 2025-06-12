@@ -1,4 +1,8 @@
 ﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
 
 namespace FastReading
 {
@@ -87,7 +91,7 @@ namespace FastReading
                 DisplayUserInfo();
                 UpdateAuthButton();  // Обновляем кнопку после выхода из системы
 
-                
+
             }
         }
 
