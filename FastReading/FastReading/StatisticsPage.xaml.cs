@@ -13,9 +13,10 @@ namespace FastReading
 
         public StatisticsPage()
         {
-            InitializeComponent();
-            CreateNormalDistributionModel();
-            _databaseHelper = ((App)Application.Current).Database;
+            InitializeComponent();  
+            CreateNormalDistributionModel();    // Создаем модель нормального распределения
+            this.Loaded += CustomTrackerPage_Loaded;    // Подписываемся на событие загрузки страницы
+            _databaseHelper = ((App)Application.Current).Database;  // Получаем экземпляр DatabaseHelper из приложения
             //LoadStatistics();  // Загружаем статистику при инициализации страницы
         }
 
@@ -56,9 +57,15 @@ namespace FastReading
         //        Title = "Количество ошибок"
         //    });
 
-            // Отображаем график
-            //PlotView.Model = plotModel; // Устанавливаем модель графика на PlotView
-            public static PlotModel CreateNormalDistributionModel()
+        // Отображаем график
+        //PlotView.Model = plotModel; // Устанавливаем модель графика на PlotView
+
+        private void CustomTrackerPage_Loaded(object sender, EventArgs e)   // Обработчик события загрузки страницы
+        {
+            PlotView.Model = CreateNormalDistributionModel();    // Устанавливаем модель графика на PlotView
+        }
+
+        public static PlotModel CreateNormalDistributionModel()     // Метод для создания модели нормального распределения
         {
             // http://en.wikipedia.org/wiki/Normal_distribution
 
@@ -68,7 +75,7 @@ namespace FastReading
                 Subtitle = "Probability density function"
             };
 
-            plot.Axes.Add(new LinearAxis
+            plot.Axes.Add(new LinearAxis    // Добавляем ось Y
             {
                 Position = AxisPosition.Left,
                 Minimum = -0.05,
@@ -77,7 +84,7 @@ namespace FastReading
                 MinorStep = 0.05,
                 TickStyle = TickStyle.Inside
             });
-            plot.Axes.Add(new LinearAxis
+            plot.Axes.Add(new LinearAxis    // Добавляем ось X
             {
                 Position = AxisPosition.Bottom,
                 Minimum = -5.25,
@@ -92,21 +99,21 @@ namespace FastReading
             plot.Series.Add(CreateNormalDistributionSeries(-5, 5, -2, 0.5));
             return plot;
         }
-        public static DataPointSeries CreateNormalDistributionSeries(double x0, double x1, double mean, double variance, int n = 1001)
+        public static DataPointSeries CreateNormalDistributionSeries(double x0, double x1, double mean, double variance, int n = 1001)  // Метод для создания серии нормального распределения
         {
-            var ls = new LineSeries
+            var ls = new LineSeries // Создаем новую серию линий
             {
                 Title = string.Format("μ={0}, σ²={1}", mean, variance)
             };
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++) // Цикл для добавления точек в серию
             {
                 double x = x0 + ((x1 - x0) * i / (n - 1));
                 double f = 1.0 / Math.Sqrt(2 * Math.PI * variance) * Math.Exp(-(x - mean) * (x - mean) / 2 / variance);
                 ls.Points.Add(new DataPoint(x, f));
             }
 
-            return ls;
+            return ls; // Возвращаем серию линий с точками нормального распределения
         }
     }
 }
