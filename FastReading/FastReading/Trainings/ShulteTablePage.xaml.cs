@@ -16,6 +16,7 @@ namespace FastReading
         {
             InitializeComponent();
             InitializeTable();
+            
         }
 
         // Метод для генерации таблицы
@@ -126,12 +127,12 @@ namespace FastReading
             var dbHelper = ((App)Application.Current).Database;
             var stats = new TrainingStatistics
             {
-                Date = DateTime.Now,
-                TimeSpent = timeSpent.TotalSeconds,
-                Errors = _errors,
+                Date = DateTime.Now,    // Дата и время тренировки
+                TimeSpent = timeSpent.TotalSeconds, // Время выполнения в секундах
+                Errors = _errors,   // Количество ошибок
                 UserId = userId // Привязываем результат к авторизованному пользователю
             };
-            await dbHelper.AddTrainingStatisticsAsync(stats);
+            await dbHelper.AddTrainingStatisticsAsync(stats);   // Сохраняем статистику в базе данных 
 
             // Переход на страницу статистики или главную страницу
             await Navigation.PopAsync();

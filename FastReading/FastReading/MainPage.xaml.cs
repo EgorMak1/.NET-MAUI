@@ -20,9 +20,6 @@ namespace FastReading
         {
             // Логика для начала тренировки
             await Navigation.PushAsync(new ExerciseSelectionPage());
-
-            // Можно добавить переход на экран тренировки, если он будет:
-            // await Navigation.PushAsync(new TrainingPage());
         }
 
         // Обработчик для кнопки "Статистика"
