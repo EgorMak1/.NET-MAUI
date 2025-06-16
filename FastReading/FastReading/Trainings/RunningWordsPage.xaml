@@ -1,12 +1,65 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FastReading.Trainings.RunningWordsPage">
 
-    <StackLayout Padding="20">
-        <Label x:Name="WordLabel" FontSize="36" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-        <Entry x:Name="AnswerEntry" Placeholder="Введите слово" FontSize="24" />
-        <Button Text="Ответить" FontSize="18" Clicked="OnAnswerEntered"/>
-    </StackLayout>
+    <ScrollView>
+        <!-- Основной контейнер для сетки слов -->
+        <Grid VerticalOptions="CenterAndExpand"
+              HorizontalOptions="Center"
+              Padding="20">
+
+            <!-- Задаем сетку для отображения слов -->
+            <Grid WidthRequest="360"
+                  MaximumWidthRequest="400"
+                  HeightRequest="360"
+                  RowSpacing="10"
+                  ColumnSpacing="10"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center">
+
+                <!-- Задаем равномерную сетку 3x3 -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Контейнер для слов, которые будут добавляться программно -->
+                <Grid x:Name="GridLayout"
+                      Grid.RowSpan="3"
+                      Grid.ColumnSpan="3" />
+            </Grid>
+
+            <!-- Сетка для отображения кнопок выбора слов (когда тренировка завершена) -->
+            <Grid x:Name="SelectionGrid"
+                    IsVisible="False"
+                    WidthRequest="360"
+                    MaximumWidthRequest="400"
+                    HeightRequest="360"
+                    VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    RowSpacing="10"
+                    ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+
+        </Grid>
+    </ScrollView>
 
 </ContentPage>

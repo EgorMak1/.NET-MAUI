@@ -19,6 +19,8 @@ namespace FastReading
             _database.CreateTableAsync<TrainingType>().Wait();  // Создание таблицы TrainingType (если еще нет)
             _database.CreateTableAsync<DifficultyLevel>().Wait();   // Создание таблицы DifficultyLevel (если еще нет)
             _database.CreateTableAsync<TrainingStatistics>().Wait();    // Создание таблицы TrainingStatistics (если еще нет)
+            _database.CreateTableAsync<Word>().Wait(); // Добавление в конструктор DatabaseHelper
+
 
         }
 
@@ -91,5 +93,11 @@ namespace FastReading
 
             return await _database.QueryAsync<TrainingStatistics>(query, userId);
         }
+
+        public async Task<List<Word>> GetWordsAsync()   // Метод для получения всех слов из базы данных
+        {
+            return await _database.Table<Word>().ToListAsync();
+        }
+
     }
 }
