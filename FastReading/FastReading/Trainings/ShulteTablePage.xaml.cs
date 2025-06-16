@@ -125,17 +125,45 @@ namespace FastReading
 
             // Сохраняем статистику в базе данных
             var dbHelper = ((App)Application.Current).Database;
+
+            // Сохраняем статистику в базе данных
             var stats = new TrainingStatistics
             {
                 Date = DateTime.Now,    // Дата и время тренировки
                 TimeSpent = timeSpent.TotalSeconds, // Время выполнения в секундах
                 Errors = _errors,   // Количество ошибок
-                UserId = userId // Привязываем результат к авторизованному пользователю
+                UserId = userId, // Привязываем результат к авторизованному пользователю
+                TrainingTypeId = 1
             };
             await dbHelper.AddTrainingStatisticsAsync(stats);   // Сохраняем статистику в базе данных 
 
             // Переход на страницу статистики или главную страницу
             await Navigation.PopAsync();
         }
+
+        //public async Task InitializeDefaultsAsync()
+        //{
+        //    var existingTypes = await _database.Table<TrainingType>().ToListAsync();
+        //    if (!existingTypes.Any())
+        //    {
+        //        await _database.InsertAllAsync(new List<TrainingType>
+        //{
+        //    new TrainingType { Name = "Шульте" },
+        //    new TrainingType { Name = "Быстрое чтение" },
+        //    new TrainingType { Name = "Фокус внимания" }
+        //});
+        //    }
+
+        //    var existingLevels = await _database.Table<DifficultyLevel>().ToListAsync();
+        //    if (!existingLevels.Any())
+        //    {
+        //        await _database.InsertAllAsync(new List<DifficultyLevel>
+        //{
+        //    new DifficultyLevel { Level = "Легкий" },
+        //    new DifficultyLevel { Level = "Средний" },
+        //    new DifficultyLevel { Level = "Сложный" }
+        //});
+        //    }
+        //}
     }
 }

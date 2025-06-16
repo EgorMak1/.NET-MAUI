@@ -15,6 +15,9 @@ namespace FastReading
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "fastreading.db3");
             _databaseHelper = new DatabaseHelper(dbPath);
 
+            // Инициализация базовых данных
+            //Database.InitializeDefaultsAsync().Wait();
+
             MainPage = new NavigationPage(new MainPage());
         }
 

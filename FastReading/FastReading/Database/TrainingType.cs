@@ -2,16 +2,14 @@
 
 namespace FastReading.Database
 {
-    public class User
+    public class TrainingType
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         [NotNull]
-        public string Username { get; set; }
-
-        [NotNull]
-        public string Password { get; set; }
+        public string Name { get; set; } // Например: "Шульте", "Быстрое чтение", "Фокус"
     }
+
 
 }

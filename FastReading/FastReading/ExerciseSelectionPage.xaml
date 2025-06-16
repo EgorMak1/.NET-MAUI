@@ -17,5 +17,8 @@
                 BackgroundColor="DodgerBlue"
                 TextColor="White"
                 Clicked="OnShulteTableClicked" />
+        
+        <!-- Добавили кнопку для нового упражнения -->
+        <Button Text="Бегущие слова" Clicked="OnRunningWordsClicked" FontSize="24" />
     </StackLayout>
 </ContentPage>
