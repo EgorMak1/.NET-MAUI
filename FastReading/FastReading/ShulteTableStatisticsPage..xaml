@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage x:Class="FastReading.StatisticsPage"
+<ContentPage x:Class="FastReading.ShulteTableStatisticsPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ox="clr-namespace:OxyPlot;assembly=OxyPlot"
              xmlns:oxy="clr-namespace:OxyPlot.Maui.Skia;assembly=OxyPlot.Maui.Skia">
     <StackLayout Padding="20" Spacing="20">
-        <!-- Заголовок страницы -->
-        <Label Text="Статистика"
-               FontSize="32"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
 
         <!-- График -->
         <oxy:PlotView x:Name="PlotView"

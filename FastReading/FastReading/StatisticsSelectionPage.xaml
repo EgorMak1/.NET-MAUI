@@ -1,0 +1,17 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FastReading.StatisticsSelectionPage"
+             Title="Выбор статистики">
+
+    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+
+        <Button Text="Статистика Таблицы Шульта"
+                FontSize="18"
+                Clicked="OnShulteStatisticsClicked" />
+
+        <Button Text="Статистика Исчезающие слова"
+                FontSize="18"
+                Clicked="OnRunningWordsStatisticsClicked" />
+
+    </VerticalStackLayout>
+</ContentPage>

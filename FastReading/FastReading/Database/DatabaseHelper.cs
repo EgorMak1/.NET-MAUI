@@ -99,5 +99,13 @@ namespace FastReading
             return await _database.Table<Word>().ToListAsync();
         }
 
+        public async Task<List<TrainingStatistics>> GetShulteStatisticsAsync(int userId) // Метод для получения статистики по тренировкам Шульте для конкретного пользователя
+        {
+            return await _database.Table<TrainingStatistics>()
+                .Where(x => x.UserId == userId && x.TrainingTypeId == 1) // ID = 1 для таблицы Шульте
+                .ToListAsync();
+        }
+
+
     }
 }

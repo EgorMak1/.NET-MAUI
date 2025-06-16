@@ -36,7 +36,8 @@ namespace FastReading
             else
             {
                 // Если пользователь авторизован, переходим на страницу статистики
-                await Navigation.PushAsync(new StatisticsPage());
+                await Navigation.PushAsync(new StatisticsSelectionPage());
+                
             }
 
         }
