@@ -1,7 +1,8 @@
 ﻿using Microsoft.Maui.Controls;
-using System;
-using System.Linq;
 using Microsoft.Maui.Storage;
+using System;
+using System.Diagnostics;
+using System.Linq;
 
 namespace FastReading
 {
@@ -16,7 +17,6 @@ namespace FastReading
         {
             InitializeComponent();
             InitializeTable();
-            
         }
 
         // Метод для генерации таблицы
@@ -77,6 +77,22 @@ namespace FastReading
                 }
             }
 
+            // Убедимся, что метка добавлена только один раз, а не каждый раз при вызове метода
+            if (NextNumberLabel == null)
+            {
+                NextNumberLabel = new Label
+                {
+                    Text = $"Найди: {_currentNumber}",
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Start,
+                    FontSize = 24,
+                    Margin = new Thickness(0, 10)
+                };
+
+                // Добавляем метку в контейнер только один раз
+                (Content as StackLayout).Children.Insert(0, NextNumberLabel);
+            }
+
             // Запуск таймера
             _startTime = DateTime.Now;
             Dispatcher.StartTimer(TimeSpan.FromSeconds(1), () =>
@@ -86,8 +102,7 @@ namespace FastReading
             });
         }
 
-        // Обработчик для нажатия кнопки
-        private void OnButtonClicked(object sender, EventArgs e)
+        private async void OnButtonClicked(object sender, EventArgs e)
         {
             var button = sender as Button;
 
@@ -100,6 +115,15 @@ namespace FastReading
                     button.BackgroundColor = Colors.Green; // Правильный ответ
                     _currentNumber++;
 
+                    // Обновляем текст на метке (используем NextNumberLabel напрямую)
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        NextNumberLabel.Text = $"Найди: {_currentNumber}";
+                    });
+
+                    // Логирование для отслеживания изменения числа
+                    Debug.WriteLine($"Текущее число: {_currentNumber}");
+
                     if (_currentNumber > 25) // Все числа найдены
                     {
                         OnFinishTrainingClicked(sender, e);
@@ -110,8 +134,13 @@ namespace FastReading
                     button.BackgroundColor = Colors.Red; // Неправильный ответ
                     _errors++;
                 }
+
+                // Возвращаем цвет кнопки в исходное состояние через 0.5 секунды
+                await Task.Delay(500);
+                button.BackgroundColor = Color.FromArgb("#D3D3D3"); // Сбрасываем цвет на светло-серый
             }
         }
+
 
         // Завершение тренировки
         private async void OnFinishTrainingClicked(object sender, EventArgs e)
@@ -140,30 +169,5 @@ namespace FastReading
             // Переход на страницу статистики или главную страницу
             await Navigation.PopAsync();
         }
-
-        //public async Task InitializeDefaultsAsync()
-        //{
-        //    var existingTypes = await _database.Table<TrainingType>().ToListAsync();
-        //    if (!existingTypes.Any())
-        //    {
-        //        await _database.InsertAllAsync(new List<TrainingType>
-        //{
-        //    new TrainingType { Name = "Шульте" },
-        //    new TrainingType { Name = "Быстрое чтение" },
-        //    new TrainingType { Name = "Фокус внимания" }
-        //});
-        //    }
-
-        //    var existingLevels = await _database.Table<DifficultyLevel>().ToListAsync();
-        //    if (!existingLevels.Any())
-        //    {
-        //        await _database.InsertAllAsync(new List<DifficultyLevel>
-        //{
-        //    new DifficultyLevel { Level = "Легкий" },
-        //    new DifficultyLevel { Level = "Средний" },
-        //    new DifficultyLevel { Level = "Сложный" }
-        //});
-        //    }
-        //}
     }
 }

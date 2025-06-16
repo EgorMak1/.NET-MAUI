@@ -11,6 +11,13 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center" />
 
+            <!-- Надпись для следующего числа -->
+            <Label x:Name="NextNumberLabel"
+                   Text="Найди: 1"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
             <!-- Таймер -->
             <Label x:Name="TimerLabel"
                    FontSize="24"
@@ -18,7 +25,9 @@
                    VerticalOptions="Center" />
 
             <!-- Таблица Шульте -->
-            <Grid x:Name="ShulteTableGrid" />
+            <Grid x:Name="ShulteTableGrid"
+                  RowSpacing="10"
+                  ColumnSpacing="10"/>
 
             <!-- Кнопка для завершения тренировки -->
             <Button Text="Завершить тренировку"
