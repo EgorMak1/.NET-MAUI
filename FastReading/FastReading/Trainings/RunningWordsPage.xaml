@@ -9,14 +9,16 @@
               HorizontalOptions="Center"
               Padding="20">
 
-            <!-- Задаем сетку для отображения слов -->
-            <Grid WidthRequest="360"
+            <!-- Задаем сетку для отображения слов (GridLayout) -->
+            <Grid x:Name="GridLayout"
+                  WidthRequest="360"
                   MaximumWidthRequest="400"
                   HeightRequest="360"
                   RowSpacing="10"
                   ColumnSpacing="10"
                   VerticalOptions="Center"
-                  HorizontalOptions="Center">
+                  HorizontalOptions="Center"
+                  Padding="10">
 
                 <!-- Задаем равномерную сетку 3x3 -->
                 <Grid.RowDefinitions>
@@ -30,22 +32,18 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Контейнер для слов, которые будут добавляться программно -->
-                <Grid x:Name="GridLayout"
-                      Grid.RowSpan="3"
-                      Grid.ColumnSpan="3" />
             </Grid>
 
-            <!-- Сетка для отображения кнопок выбора слов (когда тренировка завершена) -->
+            <!-- Сетка для отображения кнопок выбора слов (SelectionGrid) -->
             <Grid x:Name="SelectionGrid"
-                    IsVisible="False"
-                    WidthRequest="360"
-                    MaximumWidthRequest="400"
-                    HeightRequest="360"
-                    VerticalOptions="End"
-                    HorizontalOptions="Center"
-                    RowSpacing="10"
-                    ColumnSpacing="10">
+                  IsVisible="False"
+                  WidthRequest="360"
+                  MaximumWidthRequest="400"
+                  HeightRequest="360"
+                  VerticalOptions="End"
+                  HorizontalOptions="Center"
+                  RowSpacing="10"
+                  ColumnSpacing="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -57,7 +55,6 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
             </Grid>
-
 
         </Grid>
     </ScrollView>
